@@ -7,7 +7,7 @@ import {Category} from '../../interfaces/interfaces';
 
 export type CategoriesState = Category[];
 
-const initialState: CategoriesState = [];
+const initialState: CategoriesState = [{id: 1, name: 'Jerusalem'}];
 
 export const CategoriesReducer =
   function(state: CategoriesState = initialState, action: Action): CategoriesState {
