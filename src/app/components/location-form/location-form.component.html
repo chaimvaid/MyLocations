@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" id="top-toolbar">
+  {{location ? location.name : 'Add New'}}
+  <span class="spacer"></span>
+  <button mat-button (click)="mapDisplay = !mapDisplay">{{mapDisplay ? 'Form' : 'Map'}}</button>
+  <button mat-button (click)="submit()">Submit</button>
+</mat-toolbar>
+<form *ngIf="locationForm && !mapDisplay" class="form-container" [formGroup]="locationForm">
+  <mat-form-field>
+    <input matInput placeholder="Location Mame *" [formControl]="locationForm.controls['name']">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Address *" [formControl]="locationForm.controls['address']">
+  </mat-form-field>
+
+ <div id="coordinates-container">
+   <mat-form-field>
+     <input matInput placeholder="Lon *" [formControl]="locationForm.controls['coordinates'].controls.lon">
+   </mat-form-field>
+
+   <mat-form-field>
+     <input matInput placeholder="Lat *" [formControl]="locationForm.controls['coordinates'].controls.lat">
+   </mat-form-field>
+ </div>
+
+  <mat-form-field>
+    <mat-label>Categories *</mat-label>
+    <mat-select [formControl]="locationForm.controls['categories']" multiple>
+      <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
+<div [hidden]="!mapDisplay">
+  <div id="map" ></div>
+</div>

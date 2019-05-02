@@ -1,0 +1,10 @@
+#bottom-toolbar{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+#buttons-wrapper{
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" id="top-toolbar">
+  {{category ? category.name : 'Add New'}}
+  <span class="spacer"></span>
+  <button mat-button (click)="submit()">Submit</button>
+</mat-toolbar>
+<form class="form-container" [formGroup]="categoryForm">
+  <mat-form-field>
+    <input matInput placeholder="Category Mame *" [formControl]="categoryForm.controls['name']">
+  </mat-form-field>
+</form>

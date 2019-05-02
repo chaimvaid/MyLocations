@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" id="top-toolbar">
+  Categories
+  <span class="spacer"></span>
+  <button mat-button [routerLink]="['/category-form']" >Add Category</button>
+</mat-toolbar>
+<mat-list>
+  <mat-list-item *ngFor="let category of store.getState().categories">
+    <mat-icon mat-list-icon>category</mat-icon>
+    <h4 mat-line>
+      <a [routerLink]="['/category-form', category.id]">
+        {{category.name}}
+      </a>
+    </h4>
+    <mat-icon  class="delete-btn" (click)="delete(category.id)" >delete</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+
+</mat-list>

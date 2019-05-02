@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" id="top-toolbar">
+  Locations
+  <span class="spacer"></span>
+  <button mat-button [routerLink]="['/location-form']">Add Location</button>
+</mat-toolbar>
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button *ngFor="let type of sortTypes; let i = index" [value]="i" (click)="setSortType(i)">{{type}}</mat-radio-button>
+</mat-radio-group>
+<mat-form-field>
+  <mat-label>Filter By Category</mat-label>
+  <mat-select  multiple (selectionChange)="filter($event)">
+    <mat-option *ngFor="let category of store.getState().categories"  [value]="category.id">{{category.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-list>
+  <mat-list-item *ngFor="let location of locations()">
+    <h4 mat-line>
+      <a [routerLink]="['/location-form', location.id]">
+        {{location.name}}
+      </a>
+    </h4>
+    <mat-icon mat-list-icon [routerLink]="['/location-form', location.id]" >location_on</mat-icon>
+    <p mat-line> <span><label >Location: </label>{{location.address}} </span><span><label >Categories: </label>{{displayCategories(location)}} </span></p>
+    <mat-icon  class="delete-btn" (click)="delete(location.id)" >delete</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+
+</mat-list>
